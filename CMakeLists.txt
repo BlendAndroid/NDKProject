@@ -26,6 +26,6 @@ file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/*.c")
 
 foreach(file ${files})
     get_filename_component(name ${file} NAME)
-    # 使用add_executable命令将main.c文件添加到我们的项目中
+    # 使用add_executable命令将文件添加到我们的项目中
     add_executable(${name} ${file})
 endforeach()

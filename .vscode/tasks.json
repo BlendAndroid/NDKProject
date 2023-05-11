@@ -9,7 +9,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
                 "cwd": "E:\\MinGW\\bin"
@@ -32,7 +32,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
                 "cwd": "E:\\MinGW\\bin"
