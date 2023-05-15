@@ -22,7 +22,7 @@ project(${ProjectId} C)
 
 set(CMAKE_C_STANDARD 11)
 
-file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/*.c")
+file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/c_demo/*.c")
 
 foreach(file ${files})
     get_filename_component(name ${file} NAME)
