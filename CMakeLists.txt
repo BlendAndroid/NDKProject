@@ -43,3 +43,5 @@ AUX_SOURCE_DIRECTORY(c_demo/header HEADER)
 SET(TEST_HEADER ${HEADER})
 
 ADD_EXECUTABLE("factorial_main" ${TEST_HEADER})
+
+INCLUDE_DIRECTORIES("c_demo/include/")
