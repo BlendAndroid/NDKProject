@@ -29,3 +29,17 @@ foreach(file ${files})
     # 使用add_executable命令将文件添加到我们的项目中
     add_executable(${name} ${file})
 endforeach()
+
+
+# 下面这个是一个项目完整的配置
+
+# 配置头文件
+INCLUDE_DIRECTORIES("c_demo/header/include/")
+
+# 添加源文件目录
+AUX_SOURCE_DIRECTORY(c_demo/header HEADER)
+
+# 设置变量
+SET(TEST_HEADER ${HEADER})
+
+ADD_EXECUTABLE("factorial_main" ${TEST_HEADER})
