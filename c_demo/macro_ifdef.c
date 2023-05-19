@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+// 函数和宏：宏更"通用",与函数的参数不同，宏的参数没有类型
+// 但是宏，比如n = MAX(i++, j)，这里的i++，在执行的时候，就会被调用两次，尽量不要使用有副作用的值
+
 // 单行宏函数 最好用括号括起来，因为在编译期就会被替换掉，因为这个参数可能是一个表达式
 #define MAX(a, b) (a) > (b) ? (a) : (b)
 
@@ -28,7 +31,10 @@ int Max(int a, int b)
  *  #if defined(MACRO) ==> #ifdef MACRO
  */
 
-// 条件编译判断C和C++
+// 注意#if和#ifdef的区别
+
+// 条件编译判断C和C++，如果是c++，就添加下面的代码
+// #ifdef指令测试一个标识符是否已经定义为宏，__cplusplus中有这个宏
 #ifdef __cplusplus
 extern "C"
 {
@@ -39,8 +45,9 @@ extern "C"
 };
 #endif
 
-// 这里定义了宏DEBUG
-#define DEBUG 1
+// 这里定义了宏DEBUG，只要定义了，就不是0
+// 由于define运算符仅检测DEBUG是否有定义，所以不需要给DEBUG赋值
+#define DEBUG
 
 // 条件编译判断宏DEBUG，如果成功输出message信息
 void dump(char *message)
@@ -62,17 +69,23 @@ void Printlnf(const char *format, ...)
 }
 
 // 宏
-//  在C语言中可以这样写： "Hello ""world" ==> "Hello world"，所以"format"\n" == format 后面直接加"\n"
+
+// 在宏中，#运算符将宏的一个参数转换为字符串字面量。参数前面加#，可以直接把参数变成相应的字符串。如果空的实际参数被#运算符“字符串化”，则结果为""（空字符串）
+// 在宏中，##运算符可以将两个记号（如标识符）“粘合”在一起，成为一个记号。如果其中一个操作数是宏参数，“粘合”会在形式参数被相应的实际参数替换后发生。
+// 如果##运算符之后的一个实际参数为空，它将会被不可见的“位置标记”记号代替。
+
+//  在C语言中相邻的字符串字面量会被合并，可以这样写： "Hello ""world" ==> "Hello world"，所以"format"\n" == format 后面直接加"\n"
 // __VA_ARGS__：获取变长参数
-// ##__VA_ARGS__，变长参数可为空
+// ##__VA_ARGS__，变长参数可为空，使用##粘合起来，会被位置标记”记号
 // __FILE__：所在的文件
 // __LINE__：所在的代码行号
 // __FUNCTION__：所在的函数
-#define PRINTLNF(format, ...) printf("("__FILE__               \
-                                     ":%d) %s : " format "\n", \
-                                     __LINE__, __FUNCTION__, ##__VA_ARGS__)
+// __DATE__：编译的日期
+// __TIME__：编译的时间
 
-// 在宏中，参数前面加#，可以直接把参数变成相应的字符串
+#define PRINTLNF(format, ...) printf("(%s:%d) %s : " format "\n", \
+                                     __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
+
 #define PRINT_INT(value) PRINTLNF(#value ": %d", value)
 
 int main(void)
@@ -92,7 +105,7 @@ int main(void)
 
     dump("DEBUG output!");
 
-    // 条件编译判断C的版本
+    // 条件编译判断C的版本，计算表达式的值
 #if __STDC_VERSION__ >= 201112
     puts("C11!!");
 #elif __STDC_VERSION__ >= 199901

@@ -3,6 +3,7 @@
         "stdio.h": "c",
         "stdbool.h": "c",
         "factorial.h": "c",
-        "io_utils.h": "c"
+        "io_utils.h": "c",
+        "stdarg.h": "c"
     }
 }
