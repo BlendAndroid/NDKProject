@@ -4,6 +4,8 @@
         "stdbool.h": "c",
         "factorial.h": "c",
         "io_utils.h": "c",
-        "stdarg.h": "c"
+        "stdarg.h": "c",
+        "typeinfo": "c",
+        "type_traits": "c"
     }
 }
