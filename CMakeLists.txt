@@ -17,17 +17,28 @@ cmake_minimum_required(VERSION 3.10)
 get_filename_component(ProjectId ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 string(REPLACE " " "_" ProjectId ${ProjectId})
 
-# 项目名称
-project(${ProjectId} C)
+# 项目名称（这里可以不写CXX和C，但不能只写一个，否则只会编译指定语言）
+project(${ProjectId} C CXX)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 11)    #设置c的编译选项
+set(CMAKE_CXX_STANDARD 14)  #设置c++的编译选项
 
+#设置C
 file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/c_demo/*.c")
 
 foreach(file ${files})
     get_filename_component(name ${file} NAME)
     # 使用add_executable命令将文件添加到我们的项目中
     add_executable(${name} ${file})
+endforeach()
+
+# 设置C++
+file(GLOB filesc "${CMAKE_CURRENT_SOURCE_DIR}/c_plus_plus_demo/*.cpp")
+
+foreach(filec ${filesc})
+    get_filename_component(name ${filec} NAME)
+    # 使用add_executable命令将文件添加到我们的项目中
+    add_executable(${name} ${filec})
 endforeach()
 
 
