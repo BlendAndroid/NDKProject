@@ -41,4 +41,10 @@ for (i = 0; i < length; ++i) { \
 #define PRINT_CHAR_ARRAY(array, length) PRINT_ARRAY("%c, ", array, length)
 #define PRINT_DOUBLE_ARRAY(array, length) PRINT_ARRAY("%g, ", array, length)
 
+#define PRINT_IF_ERROR(format, ...) \
+if (errno != 0) { \
+  fprintf(stderr, format, ##__VA_ARGS__); \
+  fprintf(stderr, ": %s\n", strerror(errno)); \
+}
+
 #endif //BASICC_IO_UTILS_IO_UTILS_H_
