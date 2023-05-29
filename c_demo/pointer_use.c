@@ -15,12 +15,15 @@ int IsBigEndian()
     return value.c[0] == 1;
 }
 
+// 同样是利用char,占用一个字节
 int IsBigEndian2()
 {
     short s = 0x100;
-    char *p = (char *)&s; // 将s强制转换成字符数组
-    PRINT_INT(p[0]);
-    return p[0] == 1;
+    PRINT_HEX(&s);
+    char *p = (char *)&s; // 将s强制转换成char指针,我的理解是,p本身的地址和s是一样的,从打印的日志就能看出,但是p的内容,*p就要符合char的一个字节
+    PRINT_HEX(p);
+    PRINT_INT(*p);
+    return *p == 1;
 }
 
 // 大端序一般用于网络传输，和网络协议有关系
