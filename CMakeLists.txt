@@ -56,3 +56,13 @@ SET(TEST_HEADER ${HEADER})
 ADD_EXECUTABLE("factorial_main" ${TEST_HEADER})
 
 INCLUDE_DIRECTORIES("c_demo/include/")
+
+# 配置ArrayList
+
+INCLUDE_DIRECTORIES("c_plus_plus_demo/arraylist/include/")
+
+AUX_SOURCE_DIRECTORY(c_plus_plus_demo/arraylist array)
+
+SET(ARRAY_LIST ${array})
+
+ADD_EXECUTABLE("arraylist_main" ${ARRAY_LIST})
