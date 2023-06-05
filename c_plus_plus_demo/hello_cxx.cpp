@@ -39,7 +39,7 @@ int main()
 
     struct Student stu1;
     // 为结构体的成员变量赋值
-    stu1.name = "xiaoming";
+    stu1.name = (char *)"xiaoming";
     stu1.age = 15;
     stu1.score = 92.5;
     // 调用函数
@@ -50,7 +50,7 @@ int main()
     // 通过类来定义变量，即创建对象
     class StudentClass stuClass; // 也可以省略关键字class
     // 为类的成员变量赋值
-    stuClass.name = "xiaohai";
+    stuClass.name = (char *)"xiaohai";
     stuClass.age = 15;
     stuClass.score = 92.5f;
     // 调用类的成员函数
